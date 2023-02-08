@@ -62,7 +62,7 @@
       
           <div class="mb-3 form-check">
             <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="1" @checked(old('visibility' , $apartment->visibility))>
-            <label class="form-check-label" for="visibility">visibile</label>
+            <label class="form-check-label" for="visibility">Visibile</label>
           </div>
   
           <div class="mb-3 form-check">
@@ -70,14 +70,18 @@
             <label class="form-check-label" for="visibility">Non visibile</label>
           </div>
   
-          <h3>Servizi:</h3>
-          @foreach ($services as $service)
-                    <div class="mb-3 form-check">
-                        <input class="form-check-input" id="{{ $service->id }}" name="services[]" type="checkbox"
-                            value="{{ $service->id }}" @checked($errors->any() ? in_array($service->id, old('services', [])) : $apartment->services->contains($service))>
-                        <label for="{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
-                    </div>
-                @endforeach
+          {{-- form per i servizi --}}
+          <div class="form-group mb-3">
+            <h5>Servizi</h5>
+            @foreach ($services as $service)
+                <div class="form-check">
+                    <input type="checkbox" name="services[]" id="service-{{ $service->id }}"
+                        class="form-check-input" value="{{ $service->id }}" {{(is_array(old('services')) && in_array(1, old('services')))? 'checked' : ''}}>
+                    <label for="service-{{ $service->id }}"
+                        class="form-check-label">{{ $service->name }}</label>
+                </div>
+            @endforeach
+        </div>
           <button type="submit" class="btn btn-primary">Modifica</button>
         </form>
   </div>

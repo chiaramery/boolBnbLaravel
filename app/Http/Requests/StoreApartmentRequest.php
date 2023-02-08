@@ -34,7 +34,7 @@ class StoreApartmentRequest extends FormRequest
             'longitude' => ['required'],
             'latitude' => ['required'],
             'visibility' => ['nullable'],
-            'services' => ['exists:apartments,id']
+            'services' => ['exists:services,id']
         ];
     }
 }

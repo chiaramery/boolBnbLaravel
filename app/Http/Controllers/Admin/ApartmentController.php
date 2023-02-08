@@ -54,7 +54,7 @@ class ApartmentController extends Controller
         //Se services esiste 
         if ($request->has('services')) {
             //Inseriamo i nuovi servizi nell'appartamento
-            $new_apartment->services()->attach($data['services']);
+            $new_apartment->services()->attach($request->services);
         }
         return redirect()->route('admin.apartments.index')->with('message', "Il nuovo appartamento $new_apartment->title è stato aggiunto!");
     }
@@ -101,6 +101,11 @@ class ApartmentController extends Controller
             $data['image'] = $path;
         }
         $apartment->update($data);
+        if ($request->has('services')) {
+            $apartment->services()->sync($request->services);
+        } else {
+            $apartment->services()->detach();
+        }
         return redirect()->route('admin.apartments.index')->with('message', "$apartment->title è stato modificato correttamente");
     }
 

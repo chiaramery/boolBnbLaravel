@@ -11,7 +11,7 @@
                 @endforeach
             </div>
         @endif
-    <form method="POST" enctype="multipart/form-data" action="{{route('admin.apartments.store')}}">
+    <form method="post" enctype="multipart/form-data" action="{{route('admin.apartments.store')}}">
         @csrf
         <div class="mb-3">
           <label for="title" class="form-label">Titolo</label>
@@ -60,7 +60,7 @@
     
         <div class="mb-3 form-check">
           <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="1">
-          <label class="form-check-label" for="visibility">visibile</label>
+          <label class="form-check-label" for="visibility">Visibile</label>
         </div>
 
         <div class="mb-3 form-check">
@@ -71,11 +71,12 @@
         <h3>Servizi:</h3>
           @foreach ($services as $service)
                     <div class="mb-3 form-check">
-                        <input class="form-check-input" id="{{ $service->id }}" name="services[]" type="checkbox"
-                            value="{{ $service->id }}">
-                        <label for="{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
+                        <input class="form-check-input" id="service-{{ $service->id }}" name="services[]" type="checkbox"
+                            value="{{ $service->id }}" @checked(in_array($service->id , old('services', [])))>
+                        <label for="service-{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
                     </div>
                 @endforeach
+
 
         <button type="submit" class="btn btn-primary">Crea</button>
       </form>
