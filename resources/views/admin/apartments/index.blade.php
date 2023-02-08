@@ -14,7 +14,7 @@
         <div class="card-body">
           <h5 class="card-title">{{$apartment->title}}</h5>
           <a href="{{route('admin.apartments.show', $apartment->slug)}}" class="btn btn-primary">Maggiori dettagli</a>
-          <a href="" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
+          <a href="{{route('admin.apartments.edit', $apartment->slug)}}" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
           <!-- Button trigger modal --> 
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
           data-bs-target="#delete-apartment-{{ $apartment->id }}"> 

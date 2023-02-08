@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreApartmentRequest;
+use App\Http\Requests\UpdateApartmentRequest;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -28,7 +30,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.apartments.create');
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -48,6 +51,11 @@ class ApartmentController extends Controller
         }
         $new_apartment = Apartment::create($data);
         // $apartment = Apartment::create($data);
+        //Se services esiste 
+        if ($request->has('services')) {
+            //Inseriamo i nuovi servizi nell'appartamento
+            $new_apartment->services()->attach($data['services']);
+        }
         return redirect()->route('admin.apartments.index')->with('message', "Il nuovo appartamento $new_apartment->title è stato aggiunto!");
     }
 
@@ -68,9 +76,10 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Apartment $apartment, Service $service)
     {
-        //
+        $services = Service::all();
+        return view('admin.apartments.edit', compact('apartment', 'services'));
     }
 
     /**
@@ -80,9 +89,19 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Apartment::generateSlug($data['title']);
+        if ($request->hasFile('image')) {
+            if ($apartment->image) {
+                Storage::delete($apartment->image);
+            }
+            $path = Storage::put('images', $request->image);
+            $data['image'] = $path;
+        }
+        $apartment->update($data);
+        return redirect()->route('admin.apartments.index')->with('message', "$apartment->title è stato modificato correttamente");
     }
 
     /**

@@ -28,4 +28,9 @@ class Apartment extends Model
     {
         return Str::slug($title, '-');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Apartment');
+    }
 }

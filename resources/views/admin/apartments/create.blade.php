@@ -68,6 +68,15 @@
           <label class="form-check-label" for="visibility">Non visibile</label>
         </div>
 
+        <h3>Servizi:</h3>
+          @foreach ($services as $service)
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" id="{{ $service->id }}" name="services[]" type="checkbox"
+                            value="{{ $service->id }}">
+                        <label for="{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
+                    </div>
+                @endforeach
+
         <button type="submit" class="btn btn-primary">Crea</button>
       </form>
 </div>
