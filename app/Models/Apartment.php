@@ -24,9 +24,9 @@ class Apartment extends Model
         'slug'
     ];
 
-    public static function generateSlug($title)
+    public static function generateSlug($title, $address)
     {
-        return Str::slug($title, '-');
+        return Str::slug("$title + $address", '-');
     }
 
     public function services()

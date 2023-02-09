@@ -43,7 +43,7 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $data = $request->validated();
-        $data['slug'] = Apartment::generateSlug($data['title']);
+        $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
         // dd($data);
         if ($request->hasFile('image')) {
             $path = Storage::put('images', $request->image);
@@ -54,7 +54,7 @@ class ApartmentController extends Controller
         //Se services esiste 
         if ($request->has('services')) {
             //Inseriamo i nuovi servizi nell'appartamento
-            $new_apartment->services()->attach($request->services);
+            $new_apartment->services()->attach($request->service);
         }
         return redirect()->route('admin.apartments.index')->with('message', "Il nuovo appartamento $new_apartment->title è stato aggiunto!");
     }
@@ -92,7 +92,7 @@ class ApartmentController extends Controller
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
         $data = $request->validated();
-        $data['slug'] = Apartment::generateSlug($data['title']);
+        $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
         if ($request->hasFile('image')) {
             if ($apartment->image) {
                 Storage::delete($apartment->image);
