@@ -91,7 +91,6 @@
                         {{-- /Password --}}
 
                         {{-- Password confirm --}}
-
                         <div class="mb-4 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -99,8 +98,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
                         {{-- /Password confirm --}}
+                        
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

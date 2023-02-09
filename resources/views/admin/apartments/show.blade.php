@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h3 class="text-center mt-3 mb-3">Maggiori dettagli:</h3>
+
+    <a href="{{route('admin.apartments.index')}}" class="btn btn-secondary mt-3"><i class="fa-solid fa-arrow-left"></i></a>
+      <h3 class="text-center mb-3">Maggiori dettagli:</h3>
     <table class="table">
         <thead>
           <tr>
