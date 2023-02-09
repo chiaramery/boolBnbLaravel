@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container col-9 mt-5">
+  <h3 class="text-center mt-3 mb-3">Crea un nuovo appartamento:</h3>
   @if ($errors->any())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
