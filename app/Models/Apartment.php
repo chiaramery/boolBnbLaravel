@@ -33,4 +33,9 @@ class Apartment extends Model
     {
         return $this->belongsToMany('App\Models\Apartment', 'apartment_service', 'apartment_id', 'services_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

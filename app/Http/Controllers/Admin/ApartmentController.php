@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -30,8 +31,9 @@ class ApartmentController extends Controller
      */
     public function create()
     {
+        $users = User::all();
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        return view('admin.apartments.create', compact('services', 'users'));
     }
 
     /**
