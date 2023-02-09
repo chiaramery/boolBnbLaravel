@@ -25,7 +25,7 @@ class UpdateApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:200'],
+            'title' => ['required', 'max:200', Rule::unique('apartments')->ignore($this->apartment)],
             'rooms' => ['required'],
             'beds' => ['required'],
             'bathrooms' => ['required'],
