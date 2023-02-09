@@ -69,9 +69,10 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, User $user)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $owner = User::findOrFail($apartment->user_id);
+        return view('admin.apartments.show', compact('apartment', 'user', 'owner'));
     }
 
     /**
