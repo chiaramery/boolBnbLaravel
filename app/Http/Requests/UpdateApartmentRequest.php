@@ -35,7 +35,7 @@ class UpdateApartmentRequest extends FormRequest
             'longitude' => ['required'],
             'latitude' => ['required'],
             'visibility' => ['nullable'],
-            'user_id' => ['nullable', 'exists:user,id']
+            'user_id' => ['nullable', 'exists:users,id']
         ];
     }
 }

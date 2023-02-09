@@ -21,7 +21,8 @@ class Apartment extends Model
         'longitude',
         'latitude',
         'visibility',
-        'slug'
+        'slug',
+        'user_id'
     ];
 
     public static function generateSlug($title, $address)

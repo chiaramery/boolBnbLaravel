@@ -9,6 +9,7 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Service;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -46,6 +47,7 @@ class ApartmentController extends Controller
     {
         $data = $request->validated();
         $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
+        $data['user_id'] = Auth::id();
         // dd($data);
         if ($request->hasFile('image')) {
             $path = Storage::put('images', $request->image);
