@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Api\TomTomController;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
@@ -9,8 +10,12 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Service;
 use App\Models\User;
+use App\Support\getDataFromAPI;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
+
+use function App\Support\getDataFromAPI;
 
 class ApartmentController extends Controller
 {
@@ -45,6 +50,8 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
+
+
         $data = $request->validated();
         $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
         $data['user_id'] = Auth::id();
@@ -53,13 +60,28 @@ class ApartmentController extends Controller
             $path = Storage::put('images', $request->image);
             $data['image'] = $path;
         }
+        $apiurl = "https://api.tomtom.com/search/2/geocode/" . $data['address'] . ".json?key=XIQDzXTSiVqrAm7kwopEwUIOyhLDXsNY";
+        $client = new \GuzzleHttp\Client(["verify" => false]);
+        $response = $client->request('GET', $apiurl);
+        $chiamata_api =  json_decode($response->getBody(), true);
+        $longitudine  = $chiamata_api['results'][0]['position']['lat'];
+        $latitudine = $chiamata_api['results'][0]['position']['lon'];
+
+
+        $data['longitude']  = $longitudine;
+        $data['latitude'] = $latitudine;
+
+
         $new_apartment = Apartment::create($data);
         // $apartment = Apartment::create($data);
         //Se services esiste 
+
         if ($request->has('services')) {
             //Inseriamo i nuovi servizi nell'appartamento
             $new_apartment->services()->attach($request['services']);
         }
+
+
         return redirect()->route('admin.apartments.index')->with('message', "Il nuovo appartamento $new_apartment->title è stato aggiunto!");
     }
 
@@ -71,7 +93,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment, User $user)
     {
-        // dd($apartment);
+
         $owner = User::findOrFail($apartment->user_id);
         return view('admin.apartments.show', compact('apartment', 'user', 'owner'));
     }
@@ -97,6 +119,7 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
+
         $data = $request->validated();
         $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
         if ($request->hasFile('image')) {

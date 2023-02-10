@@ -31,8 +31,6 @@ class StoreApartmentRequest extends FormRequest
             'square_meters' => ['required'],
             'address' => ['required', 'max:150'],
             'image' => ['required', 'max:500'],
-            'longitude' => ['required'],
-            'latitude' => ['required'],
             'visibility' => ['nullable'],
             'services' => ['exists:services,id'],
             'user_id' => ['nullable', 'exists:users,id']
