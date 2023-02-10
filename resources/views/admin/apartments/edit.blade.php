@@ -60,7 +60,7 @@
                   <input name="latitude" type="number" class="form-control" id="latitude" value="{{old('latitude', $apartment->latitude)}}">
               </div>
       
-          <div class="mb-3 form-check">
+          {{-- <div class="mb-3 form-check">
             <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="1" @checked(old('visibility' , $apartment->visibility))>
             <label class="form-check-label" for="visibility">Visibile</label>
           </div>
@@ -68,7 +68,9 @@
           <div class="mb-3 form-check">
             <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="0" @checked(!old('visibility' , $apartment->visibility))>
             <label class="form-check-label" for="visibility">Non visibile</label>
-          </div>
+          </div> --}}
+
+          
   
           {{-- form per i servizi --}}
           <div class="form-group mb-3">
@@ -76,7 +78,7 @@
             @foreach ($services as $service)
                 <div class="form-check">
                     <input type="checkbox" name="services[]" id="service-{{ $service->id }}"
-                        class="form-check-input" value="{{ $service->id }}" {{(is_array(old('services')) && in_array(1, old('services')))? 'checked' : ''}}>
+                        class="form-check-input" value="1" @checked(!old('service' , $apartment->service))>
                     <label for="service-{{ $service->id }}"
                         class="form-check-label">{{ $service->name }}</label>
                 </div>
