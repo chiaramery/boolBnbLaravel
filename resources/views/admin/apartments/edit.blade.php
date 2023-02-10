@@ -48,7 +48,13 @@
               <div class="mb-3">
                   <label for="image" class="form-label">Modifica l'immagine</label>
                   <input name="image" type="file" class="form-control" id="image" value="{{old('image', $apartment->image)}}">
+                  {{-- Preview dell'immagine --}}
+                  <div class="preview-edit mt-3">
+                    <img style="width: 18rem;" id="image_preview" src="{{ asset('storage/' . $apartment->image) }}"
+                        alt="{{ 'Cover' . $apartment->title }}">
+                  </div>
                 </div>
+
       
                 <div class="mb-3">
                   <label for="longitude" class="form-label">Modifica la longitudine</label>
@@ -60,7 +66,7 @@
                   <input name="latitude" type="number" class="form-control" id="latitude" value="{{old('latitude', $apartment->latitude)}}">
               </div>
       
-          {{-- <div class="mb-3 form-check">
+          <div class="mb-3 form-check">
             <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="1" @checked(old('visibility' , $apartment->visibility))>
             <label class="form-check-label" for="visibility">Visibile</label>
           </div>
@@ -68,7 +74,7 @@
           <div class="mb-3 form-check">
             <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="0" @checked(!old('visibility' , $apartment->visibility))>
             <label class="form-check-label" for="visibility">Non visibile</label>
-          </div> --}}
+          </div>
 
           
   
