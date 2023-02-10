@@ -74,7 +74,7 @@
   
           {{-- form per i servizi --}}
           <div class="form-group mb-3">
-            <h5>Servizi</h5>
+            <h4>Servizi</h4>
             @foreach ($services as $service)
                 <div class="form-check">
                     <input type="checkbox" name="services[]" id="service-{{ $service->id }}"

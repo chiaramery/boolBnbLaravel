@@ -38,4 +38,17 @@ class StoreApartmentRequest extends FormRequest
             'user_id' => ['nullable', 'exists:users,id']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Inserisci il titolo',
+            'rooms.required' => 'Inserisci il numero di stanze',
+            'beds.required' => 'Inserisci il numero di letti',
+            'bathrooms.required' => 'Inserisci il numero di bagni',
+            'square_meters.required' => 'Inserisci il valore dei metri quadrati',
+            'address.required' => "Inserisci l'indirizzo",
+            'image.required' => "Inserisci l'immagine",
+        ];
+    }
 }
