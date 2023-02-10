@@ -31,9 +31,10 @@
       </table>
 
       <div class="row">
-        {{-- @foreach ($apartment->service_id as $service)
+        <h4>Servizi:</h4>
+        @foreach ($apartment->services as $service)
             <p>{{$service->name}}</p>
-        @endforeach --}}
+        @endforeach
       </div>
 
       <div class="slider">
