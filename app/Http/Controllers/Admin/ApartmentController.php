@@ -58,7 +58,7 @@ class ApartmentController extends Controller
         //Se services esiste 
         if ($request->has('services')) {
             //Inseriamo i nuovi servizi nell'appartamento
-            $new_apartment->services()->attach($request->service);
+            $new_apartment->services()->attach($request['services']);
         }
         return redirect()->route('admin.apartments.index')->with('message', "Il nuovo appartamento $new_apartment->title è stato aggiunto!");
     }
@@ -71,6 +71,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment, User $user)
     {
+        // dd($apartment);
         $owner = User::findOrFail($apartment->user_id);
         return view('admin.apartments.show', compact('apartment', 'user', 'owner'));
     }
@@ -81,7 +82,7 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apartment $apartment, Service $service)
+    public function edit(Apartment $apartment)
     {
         $services = Service::all();
         return view('admin.apartments.edit', compact('apartment', 'services'));

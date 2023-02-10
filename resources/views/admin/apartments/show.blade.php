@@ -30,6 +30,12 @@
         </tbody>
       </table>
 
+      <div class="row">
+        {{-- @foreach ($apartment->service_id as $service)
+            <p>{{$service->name}}</p>
+        @endforeach --}}
+      </div>
+
       <div class="slider">
         <h4>Immagini:</h4>
        <img src="{{asset('storage/'.$apartment->image)}}" alt="">

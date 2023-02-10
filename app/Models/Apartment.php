@@ -32,7 +32,7 @@ class Apartment extends Model
 
     public function services()
     {
-        return $this->belongsToMany('App\Models\Apartment', 'apartment_service', 'apartment_id', 'services_id');
+        return $this->belongsToMany('App\Models\Apartment', 'apartment_service', 'apartment_id', 'service_id');
     }
 
     public function user()
