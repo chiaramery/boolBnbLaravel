@@ -78,7 +78,7 @@
             @foreach ($services as $service)
                 <div class="form-check">
                     <input type="checkbox" name="services[]" id="service-{{ $service->id }}"
-                        class="form-check-input" value="1" @checked(!old('service' , $apartment->service))>
+                        class="form-check-input" value="{{$service->id}}" @checked($apartment->services->contains($service))>
                     <label for="service-{{ $service->id }}"
                         class="form-check-label">{{ $service->name }}</label>
                 </div>

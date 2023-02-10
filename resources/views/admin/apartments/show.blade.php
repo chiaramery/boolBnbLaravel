@@ -33,7 +33,7 @@
       <div class="row">
         <h4>Servizi:</h4>
         @foreach ($apartment->services as $service)
-            <p>{{$service->name}}</p>
+            <p>- {{$service->name}}</p>
         @endforeach
       </div>
 
