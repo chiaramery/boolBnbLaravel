@@ -22,8 +22,8 @@ return new class extends Migration
             $table->integer('square_meters')->required();
             $table->string('address', 150)->required();
             $table->string('image', 200)->required();
-            $table->float('longitude', 6, 2)->required();
-            $table->float('latitude', 6, 2)->required();
+            $table->double('longitude')->required();
+            $table->double('latitude')->required();
             $table->tinyInteger('visibility')->required()->default(0);
             $table->string('slug')->required();
             $table->timestamps();
