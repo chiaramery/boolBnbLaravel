@@ -186,8 +186,10 @@ class ApartmentController extends Controller
             $apartments = Apartment::where([
                 ['user_id', Auth::user()->id],
                 ['title', 'like', "%$request->title%"],
+                ['address', 'like', "%$request->address%"],
                 ['rooms', 'like', "%$request->rooms%"],
                 ['beds', 'like', "%$request->beds%"],
+
             ])->get();
         }
 
