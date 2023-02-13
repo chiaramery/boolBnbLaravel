@@ -32,7 +32,7 @@ class StoreApartmentRequest extends FormRequest
             'address' => ['required', 'max:150'],
             'image' => ['required', 'max:500'],
             'visibility' => ['nullable'],
-            'services' => ['exists:services,id'],
+            'services' => ['required', 'exists:services,id'],
             'user_id' => ['nullable', 'exists:users,id']
         ];
     }
@@ -47,6 +47,7 @@ class StoreApartmentRequest extends FormRequest
             'square_meters.required' => 'Inserisci il valore dei metri quadrati',
             'address.required' => "Inserisci l'indirizzo",
             'image.required' => "Inserisci l'immagine",
+            'services' => "Inserisci almeno un servizio"
         ];
     }
 }

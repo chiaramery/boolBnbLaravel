@@ -18,8 +18,8 @@
 
             <div class="mb-3">
                 <label for="rooms" class="form-label">Stanze</label>
-                <input required name="rooms" type="number" class="form-control @error('rooms') is-invalid @enderror"
-                    id="rooms" value="{{ old('rooms') }}">
+                <input required name="rooms" type="number" min="1"
+                    class="form-control @error('rooms') is-invalid @enderror" id="rooms" value="{{ old('rooms') }}">
                 @error('rooms')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -29,8 +29,8 @@
 
             <div class="mb-3">
                 <label for="beds" class="form-label">Letti</label>
-                <input required name="beds" type="number" class="form-control @error('rooms') is-invalid @enderror"
-                    id="beds" value="{{ old('beds') }}">
+                <input required name="beds" type="number" min="1"
+                    class="form-control @error('rooms') is-invalid @enderror" id="beds" value="{{ old('beds') }}">
                 @error('beds')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -40,7 +40,7 @@
 
             <div class="mb-3">
                 <label for="bathrooms" class="form-label">Bagni</label>
-                <input required name="bathrooms" type="number"
+                <input required name="bathrooms" type="number" min="1"
                     class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms"
                     value="{{ old('bathrooms') }}">
                 @error('bathrooms')
@@ -52,7 +52,7 @@
 
             <div class="mb-3">
                 <label for="square_meters" class="form-label">Metri quadri</label>
-                <input required name="square_meters" type="number"
+                <input required name="square_meters" type="number" min="1"
                     class="form-control @error('square_meters') is-invalid @enderror" id="square_meters"
                     value="{{ old('square_meters') }}">
                 @error('square_meters')
@@ -91,15 +91,24 @@
                 <label class="form-check-label" for="visibility">Visibile</label>
             </div>
 
-            <h3>Servizi:</h3>
-            @foreach ($services as $service)
-                <div class="mb-3 form-check">
-                    <input class="form-check-input" id="service-{{ $service->id }}" name="services[]" type="checkbox"
-                        value="{{ $service->id }}" @checked(in_array($service->id, old('services', [])))>
-                    <label for="service-{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
-                </div>
-            @endforeach
 
+            <h3>Servizi:</h3>
+            <div>
+                @if ($errors->has('services'))
+                    <span class="help-block">
+                        <p style="color:red">{{ $errors->first('services') }}</p>
+                    </span>
+                @endif
+                @foreach ($services as $service)
+                    <div class="mb-3 form-check form-check-inline {{ $errors->has('services') ? 'has-error' : '' }}">
+                        <label for="service-{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
+                        <input class="form-check-input" id="service-{{ $service->id }}" name="services[]" type="checkbox"
+                            value="{{ $service->id }}" @checked(in_array($service->id, old('services', [])))>
+                    </div>
+                @endforeach
+
+
+            </div>
 
             <button type="submit" class="btn btn-primary">Crea</button>
         </form>

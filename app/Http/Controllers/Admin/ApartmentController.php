@@ -26,7 +26,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::where('user_id', Auth::user()->id)->get();
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -129,6 +129,17 @@ class ApartmentController extends Controller
             $path = Storage::put('images', $request->image);
             $data['image'] = $path;
         }
+        $apiurl = "https://api.tomtom.com/search/2/geocode/" . $data['address'] . ".json?key=XIQDzXTSiVqrAm7kwopEwUIOyhLDXsNY";
+        $client = new \GuzzleHttp\Client(["verify" => false]);
+        $response = $client->request('GET', $apiurl);
+        $chiamata_api =  json_decode($response->getBody(), true);
+        $longitudine  = $chiamata_api['results'][0]['position']['lat'];
+        $latitudine = $chiamata_api['results'][0]['position']['lon'];
+
+
+        $data['longitude']  = $longitudine;
+        $data['latitude'] = $latitudine;
+
         $apartment->update($data);
         if ($request->has('services')) {
             $apartment->services()->sync($request->services);

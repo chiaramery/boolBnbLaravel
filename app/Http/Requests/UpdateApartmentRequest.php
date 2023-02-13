@@ -32,8 +32,6 @@ class UpdateApartmentRequest extends FormRequest
             'square_meters' => ['required'],
             'address' => ['required', 'max:150'],
             'image' => ['nullable'],
-            'longitude' => ['required'],
-            'latitude' => ['required'],
             'visibility' => ['nullable'],
             'user_id' => ['nullable', 'exists:users,id']
         ];
