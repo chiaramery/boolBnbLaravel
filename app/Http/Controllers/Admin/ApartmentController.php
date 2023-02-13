@@ -24,11 +24,24 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $apartments = Apartment::where('user_id', Auth::user()->id)->get();
+        // $apartments = Apartment::where('user_id', Auth::user()->id)->get();
+
+        // Esempio di filtro per titolo
+        if (count($request->all()) === 0) {
+            // Nessuna ricerca effettuata
+            $apartments = Apartment::where('user_id', Auth::user()->id)->get();
+        } elseif ($request->has('search_key_title')) {
+            $apartments = Apartment::where([
+                ['user_id', Auth::user()->id],
+                ['title', 'like', "%$request->search_key_title%"],
+            ])->get();
+        }
+
         return view('admin.apartments.index', compact('apartments'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -159,5 +172,27 @@ class ApartmentController extends Controller
     {
         $apartment->delete();
         return redirect()->route('admin.apartments.index')->with('message', "L'appartamento $apartment->title è stato eliminato correttamente!");
+    }
+
+    public function search(Request $request)
+    {
+        $services = Service::all();
+
+
+        if (count($request->all()) === 0) {
+            // Nessuna ricerca effettuata
+            $apartments = Apartment::where('user_id', Auth::user()->id)->get();
+        } elseif ($request->has('title')) {
+            $apartments = Apartment::where([
+                ['user_id', Auth::user()->id],
+                ['title', 'like', "%$request->title%"],
+                ['rooms', 'like', "%$request->rooms%"],
+                ['beds', 'like', "%$request->beds%"],
+            ])->get();
+        }
+
+
+
+        return view('admin.apartments.search',  compact('apartments', 'services'));
     }
 }

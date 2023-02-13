@@ -9,35 +9,8 @@
     @vite(['resources/js/app.js'])
 
     {{-- cdn tomtom --}}
-    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css' />
-    <script>
-        (function() {
-            window.SS = window.SS || {};
-            SS.Require = function(callback) {
-                if (typeof callback === 'function') {
-                    if (window.SS && SS.EventTrack) {
-                        callback();
-                    } else {
-                        var siteSpect = document.getElementById('siteSpectLibraries');
-                        var head = document.getElementsByTagName('head')[0];
-                        if (siteSpect === null && typeof head !== 'undefined') {
-                            siteSpect = document.createElement('script');
-                            siteSpect.type = 'text/javascript';
-                            siteSpect.src = '/__ssobj/core.js+ssdomvar.js+generic-adapter.js';
-                            siteSpect.async = true;
-                            siteSpect.id = 'siteSpectLibraries';
-                            head.appendChild(siteSpect);
-                        }
-                        if (window.addEventListener) {
-                            siteSpect.addEventListener('load', callback, false);
-                        } else {
-                            siteSpect.attachEvent('onload', callback, false);
-                        }
-                    }
-                }
-            };
-        })();
-    </script>
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.50.0/maps/maps.css">
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.50.0/maps/maps-web.min.js"></script>
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -100,6 +73,13 @@
                                         href="{{ route('admin.apartments.create') }}">
                                         <i class="fa-solid fa-plus"></i>
                                         Crea
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() === 'admin.search' ? 'bg-info' : '' }}"
+                                        href="{{ route('admin.search') }}">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        Ricerca avanzata
                                     </a>
                                 </li>
 

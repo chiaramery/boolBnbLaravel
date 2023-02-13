@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
+    Route::get('/search', [ApartmentController::class, 'search'])->name('search');
 });
 
 require __DIR__ . '/auth.php';

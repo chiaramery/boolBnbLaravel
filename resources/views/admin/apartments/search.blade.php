@@ -1,29 +1,34 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h3 class="text-center mt-3 mb-3">Lista appartamenti:</h3>
-    <div class="filter d-flex justify-content-around">
-        <form class="mb-4 col-5 m-auto d-flex " action="{{ route('admin.apartments.index') }}" method="GET">
-            @csrf
-            <input type="text" class="form-control me-3 " name="search_key_title" placeholder="Cerca per titolo">
-            <button class="btn btn-primary me-4" type="submit">Cerca</button>
-            <a class="btn btn-primary col-3" href="{{ route('admin.search') }}">
-                Ricerca avanzata
-            </a>
-        </form>
-
-    </div>
+    <form class="mt-5 col-8 m-auto" action="{{ route('admin.search') }}" method="GET">
+        <div class="form-group">
+            <label for="title">Titolo :</label>
+            <input type="text" name="title" id="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="rooms">Numero di camere:</label>
+            <input type="number" name="rooms" id="rooms" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="beds">Posti letto :</label>
+            <input type="number" name="beds" id="beds" class="form-control">
+        </div>
+        <h5 class="mt-3">Spunta i servizi che diseri siano compresi nel tuo appartamento </h5>
+        @foreach ($services as $service)
+            <div class="mb-3 form-check form-check-inline">
+                <label for="{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
+                <input class="form-check-input" id="{{ $service->id }}" name="services[]" type="checkbox"
+                    value="{{ $service->id }}">
+            </div>
+        @endforeach
+        <br>
+        <button type="submit" class="mb-3 btn btn-primary mt-3">Cerca</button>
+    </form>
 
     <div class="row">
-
-        @if (session('message'))
-            <div class="alert alert-info">
-                {{ session('message') }}
-            </div>
-        @endif
-
         @foreach ($apartments as $apartment)
-            <div class="col-3">
+            <div class="col-2 m-auto">
                 <div class="card mb-3 col-2" style="width: 18rem;">
                     <img src="{{ asset('storage/' . $apartment->image) }}" class="card-img-top" alt="...">
                     <div class="card-body">
