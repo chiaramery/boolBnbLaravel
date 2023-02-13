@@ -7,6 +7,10 @@
             <input type="text" name="title" id="title" class="form-control">
         </div>
         <div class="form-group">
+            <label for="address">Indirizzo</label>
+            <input type="text" name="address" id="address" class="form-control">
+        </div>
+        <div class="form-group">
             <label for="rooms">Numero di camere:</label>
             <input type="number" name="rooms" id="rooms" class="form-control">
         </div>
