@@ -39,27 +39,28 @@
             @endforeach
         </div>
         {{-- Mappa --}}
-        <div id="map" style="height: 500px; width: 100%;"></div>
+        <h3>Mappa del luogo </h3>
+        <div id="map" style="width: 70%; height: 400px;"></div>
         {{-- Foto --}}
         <div class="slider">
             <h4>Immagini:</h4>
-            <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+            <img class="mb-5" style="width: 70%; height: 400px" src="{{ asset('storage/' . $apartment->image) }}"
+                alt="">
         </div>
 
-
-
-    @section('script')
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.48.0/maps/maps-web.min.js">
-            let map = tt.map({
-                key: 'upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd',
-                container: 'map',
-                style: 'tomtom://vector/1/basic-main',
-                center: [{{ $apartment->longitude }}, {{ $apartment->latitude }}],
-                zoom: 10
+        <script>
+            const map = tt.map({
+                key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
+                container: "map",
+                center: [{{ $apartment->latitude }}, {{ $apartment->longitude }}, ],
+                zoom: 15
             });
+            const marker = new tt.Marker()
+                .setLngLat({{ $apartment->latitude }}, {{ $apartment->longitude }})
+                .addTo(map);
         </script>
-    @endsection
 
 
-</div>
+
+    </div>
 @endsection
