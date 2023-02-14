@@ -114,6 +114,7 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                    <small id="message-password" class="form-text"></small>
                                 </div>
                             </div>
                             {{-- /Password confirm --}}
