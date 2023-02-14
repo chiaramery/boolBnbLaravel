@@ -33,7 +33,21 @@ class UpdateApartmentRequest extends FormRequest
             'address' => ['required', 'max:150'],
             'image' => ['nullable'],
             'visibility' => ['nullable'],
+            'services' => ['required', 'exists:services,id'],
             'user_id' => ['nullable', 'exists:users,id']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required' => 'Inserisci il titolo',
+            'rooms.required' => 'Inserisci il numero di stanze',
+            'beds.required' => 'Inserisci il numero di letti',
+            'bathrooms.required' => 'Inserisci il numero di bagni',
+            'square_meters.required' => 'Inserisci il valore dei metri quadrati',
+            'address.required' => "Inserisci l'indirizzo",
+            'image.required' => "Inserisci l'immagine",
+            'services' => "Inserisci almeno un servizio"
         ];
     }
 }
