@@ -56,7 +56,7 @@
                 zoom: 15
             });
             const marker = new tt.Marker()
-                .setLngLat({{ $apartment->latitude }}, {{ $apartment->longitude }})
+                .setLngLat({{ $apartment->latitude }}, {{ $apartment->longitude }}, )
                 .addTo(map);
         </script>
 
