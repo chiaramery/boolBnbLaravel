@@ -29,22 +29,28 @@
         <br>
         <button type="submit" class="mb-3 btn btn-primary mt-3">Cerca</button>
     </form>
-
-    <div class="row">
-        @foreach ($apartments as $apartment)
-            <div class="col-2 m-auto">
-                <div class="card mb-3 col-2" style="width: 18rem;">
-                    <img src="{{ asset('storage/' . $apartment->image) }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{ $apartment->title }}</h5>
-                        <a href="{{ route('admin.apartments.show', $apartment->slug) }}" class="btn btn-primary">Maggiori
-                            dettagli</a>
-                        <a href="{{ route('admin.apartments.edit', $apartment->slug) }}" class="btn btn-warning"><i
-                                class="fa-solid fa-pen"></i></a>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#delete-apartment-{{ $apartment->id }}">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+    <div class="container mt-2">
+        <div class="row gy-4 justify-content-center justify-content-md-start mt-4">
+            @foreach ($apartments as $apartment)
+                <div class="col-8 col-md-4 col-lg-3">
+                    <div class="index-card">
+                        <div class="img-index">
+                            <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                        </div>
+                        <div class="text">
+                            <h4 class="title-apartment">{{ $apartment->title }}</h4>
+                            <p class="title-address">{{ $apartment->address }}</p>
+                        </div>
+                        <div class="actions">
+                            <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
+                                class="btn btn-success">View</a>
+                            <a href="{{ route('admin.apartments.edit', $apartment->slug) }}" class="btn btn-warning"><i
+                                    class="fa-solid fa-pen"></i></a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete-apartment-{{ $apartment->id }}">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                         <!-- Modal della conferma prima della cancellazione -->
                         <div class="modal fade" id="delete-apartment-{{ $apartment->id }}" tabindex="-1"
                             aria-labelledby="delete-label-{{ $apartment->id }}" aria-hidden="true">
@@ -73,8 +79,7 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 @endsection

@@ -3,6 +3,15 @@
 @section('content')
     <div class="container">
         <h3 class="text-center mt-4 text-uppercase fs-1">Apartments List</h3>
+        <div class="filter d-flex">
+            <form class="mb-4 col-5 m-auto d-flex " action="{{ route('admin.apartments.index') }}" method="GET">
+                @csrf
+                <input type="text" class="form-control me-3 " name="search_key_title" placeholder="Cerca per titolo">
+                <button class="btn btn-primary me-4" type="submit">Cerca</button>
+
+            </form>
+
+        </div>
         @if (session('message'))
             <div class="alert alert-info">
                 {{ session('message') }}

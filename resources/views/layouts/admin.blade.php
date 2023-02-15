@@ -74,6 +74,14 @@
                             Apartments
                         </a>
                     </li>
+                    <li
+                        class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.search' ? 'dash-active' : '' }}">
+                        <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.search' ? 'color-active' : '' }}"
+                            href="{{ route('admin.search') }}">
+                            <i class="fa-solid fa-magnifying-glass me-4"></i>
+                            Search
+                        </a>
+                    </li>
                 </ul>
             </div>
 
