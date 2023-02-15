@@ -5,6 +5,7 @@ import.meta.glob(["../img/**"]);
 import tt from "@tomtom-international/web-sdk-maps";
 
 import "./validationPasswordConfirm";
+import "./menuResponsive";
 
 // const map = tt.map({
 //     key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
