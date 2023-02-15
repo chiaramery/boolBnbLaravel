@@ -1,7 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 html {
-    font-size: 62.5%;
+    font-size: 100%
 }
 
 .dashboard {
@@ -87,7 +87,7 @@ html {
                     padding: 1.6rem .5rem;
 
                     .title-link {
-                        font-size: 1.6rem;
+                        font-size: 1rem;
                         font-weight: 700;
                         text-transform: uppercase;
                         color: white;
