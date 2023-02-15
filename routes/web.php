@@ -19,11 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::put('/apartments/{apartmentSlug}', [ApartmentController::class, 'update'])
+    ->name('apartments.update')
+    ->middleware(['auth', 'check.apartment.owner']);
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::get('/search', [ApartmentController::class, 'search'])->name('search');
 });
+
 
 require __DIR__ . '/auth.php';

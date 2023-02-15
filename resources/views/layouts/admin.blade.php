@@ -11,6 +11,13 @@
     {{-- cdn tomtom --}}
     <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.50.0/maps/maps.css">
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.50.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23/services/services-web.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tomtom-international/web-sdk@6.23.0"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.8.0/services/services-web.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tomtom-international/web-sdk-maps@6.14.0/services-and-helpers.min.js">
+    </script>
+
+
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="

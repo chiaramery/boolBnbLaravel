@@ -132,7 +132,7 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-
+        $this->authorize('update', $apartment);
         $data = $request->validated();
         $data['slug'] = Apartment::generateSlug($data['title'], $data['address']);
         if ($request->hasFile('image')) {

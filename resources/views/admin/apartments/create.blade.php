@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@push('scripts')
+    <script src="{{ asset('js/address-autocomplete.js') }}"></script>
+@endpush
 @section('content')
     <div class="container col-9 mt-5">
         <h3 class="text-center mt-3 mb-3">Crea un nuovo appartamento:</h3>
@@ -63,6 +65,8 @@
             </div>
 
 
+
+
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo</label>
                 <input required name="address" type="text" class="form-control @error('address') is-invalid @enderror"
@@ -73,6 +77,21 @@
                     </div>
                 @enderror
             </div>
+            <script>
+                const searchBox = tomtom.services.fuzzySearch({
+                    key: 'upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd',
+                    limit: 5
+                });
+
+                const input = document.getElementById('address');
+
+                input.addEventListener('input', function() {
+                    searchBox.query(input.value).go(function(results) {
+                        console.log(results);
+                        // Aggiungi il codice per popolare le opzioni di suggerimento qui
+                    });
+                });
+            </script>
 
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
@@ -91,6 +110,8 @@
                 <input name="visibility" type="checkbox" class="form-check-input" id="visibility" value="1" checked>
                 <label class="form-check-label" for="visibility">Visibile</label>
             </div>
+
+
 
 
             <h3>Servizi:</h3>
