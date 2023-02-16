@@ -10,12 +10,22 @@ class ApartmentController extends Controller
 {
     public function index(Request $request)
     {
-        $apartments = Apartment::with('services')->paginate(5);
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+        $radius = $request->input('radius', 20000); // Raggio di default di 20 km
+
+        $apartments = Apartment::with('services')
+            ->selectRaw("*, (6371 * acos(cos(radians($lat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($lng)) + sin(radians($lat)) * sin(radians(latitude)))) AS distance")
+            ->whereRaw("(6371 * acos(cos(radians($lat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($lng)) + sin(radians($lat)) * sin(radians(latitude)))) < $radius")
+            ->orderBy('distance')
+            ->paginate(5);
+
         return response()->json([
             'success' => true,
-            'results' => $apartments
+            'data' => $apartments
         ]);
     }
+
 
     public function show($slug)
     {
