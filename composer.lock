@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0649c84ac50c29b025e013a340f1c396",
+    "content-hash": "4b46f7078cb1a234474d98a6f91c7c56",
     "packages": [
+        {
+            "name": "ajarunthomas/haversine",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajarunthomas/Haversine.git",
+                "reference": "f1e8c9ffb8a7aeb0fa93d3ff13936c5378ba2ec3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajarunthomas/Haversine/zipball/f1e8c9ffb8a7aeb0fa93d3ff13936c5378ba2ec3",
+                "reference": "f1e8c9ffb8a7aeb0fa93d3ff13936c5378ba2ec3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Ajarunthomas": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arun Thomas",
+                    "email": "ajarunthomas@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "calculate distance between 2 geolocations using haversine formula",
+            "homepage": "https://github.com/ajarunthomas/Haversine",
+            "keywords": [
+                "distance",
+                "formula",
+                "haversine"
+            ],
+            "support": {
+                "issues": "https://github.com/ajarunthomas/Haversine/issues",
+                "source": "https://github.com/ajarunthomas/Haversine/tree/v1.0.0"
+            },
+            "time": "2021-01-18T08:44:18+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.10.2",

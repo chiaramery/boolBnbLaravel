@@ -52,7 +52,7 @@
             const map = tt.map({
                 key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
                 container: "map",
-                center: [{{ $apartment->latitude }}, {{ $apartment->longitude }}, ],
+                center: [{{ $apartment->longitude }}, {{ $apartment->latitude }}],
                 zoom: 15
             });
             const marker = new tt.Marker()
