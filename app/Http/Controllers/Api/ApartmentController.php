@@ -63,4 +63,45 @@ class ApartmentController extends Controller
             ]);
         }
     }
+    public function filter(Request $request)
+    {
+
+        $query = DB::table('apartments');
+
+        // Filtri di ricerca
+        if ($request->filled('bathrooms')) {
+            $query->where('bathrooms', $request->input('bathrooms'));
+        }
+        if ($request->filled('beds')) {
+            $query->where('beds', $request->input('beds'));
+        }
+        if ($request->filled('rooms')) {
+            $query->where('rooms', $request->input('rooms'));
+        }
+
+        // Filtri dei servizi
+        if ($request->filled('services')) {
+            $services = $request->input('services');
+            $query->where(function ($query) use ($services) {
+                foreach ($services as $service) {
+                    $query->orWhereExists(function ($query) use ($service) {
+                        $query->select(DB::raw(1))
+                            ->from('apartment_service')
+                            ->whereRaw('apartment_service.apartment_id = apartments.id')
+                            ->where('apartment_service.service_id', $service);
+                    });
+                }
+            });
+        }
+
+        // Eseguire la query
+        $apartments = $query->get();
+        return response()->json([
+            'success' => true,
+            'apartments' => $apartments,
+        ]);
+
+        // Eseguire la query
+
+    }
 }

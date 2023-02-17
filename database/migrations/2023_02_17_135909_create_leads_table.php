@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 150);
             $table->string('name', 150);
+            $table->string('email', 150);
             $table->text('message');
             $table->timestamps();
         });
