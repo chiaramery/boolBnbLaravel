@@ -147,8 +147,8 @@ class ApartmentController extends Controller
         $client = new \GuzzleHttp\Client(["verify" => false]);
         $response = $client->request('GET', $apiurl);
         $chiamata_api =  json_decode($response->getBody(), true);
-        $longitudine  = $chiamata_api['results'][0]['position']['lat'];
-        $latitudine = $chiamata_api['results'][0]['position']['lon'];
+        $longitudine  = $chiamata_api['results'][0]['position']['lon'];
+        $latitudine = $chiamata_api['results'][0]['position']['lat'];
 
 
         $data['longitude']  = $longitudine;

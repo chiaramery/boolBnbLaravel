@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Http;
 class ApartmentController extends Controller
 {
 
+    public function all(Request $request)
+    {
+
+        $apartments = Apartment::with('services')->get();
+
+        return response()->json([
+            'success' => true,
+            'results' => $apartments
+        ]);
+    }
+
     public function index(Request $request)
     {
         $lat = $request->latitude;
