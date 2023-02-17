@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container">
-        <h3 class="text-center mt-4 text-uppercase fs-1">Apartments List</h3>
-        <div class="filter d-flex">
-            <form class="mb-4 col-5 m-auto d-flex " action="{{ route('admin.apartments.index') }}" method="GET">
+        <h3 class="mt-3 text-uppercase fs-2 text-center text-md-start">Apartments List</h3>
+        <div class="filter">
+            <form class="mb-3 mt-4 col-5 mx-auto mx-md-0" action="{{ route('admin.apartments.index') }}" method="GET">
                 @csrf
-                <input type="text" class="form-control me-3 " name="search_key_title" placeholder="Cerca per titolo">
-                <button class="btn btn-primary me-4" type="submit">Cerca</button>
+                <input type="text" class="form-control" name="search_key_title" placeholder="Cerca per titolo">
+                <button class="btn btn-primary mt-2" type="submit">Cerca</button>
 
             </form>
 
