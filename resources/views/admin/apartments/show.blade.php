@@ -1,51 +1,66 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container-show">
+        {{-- Btn return --}}
+        <a href="{{ route('admin.apartments.index') }}" class="btn-return"><i class="fa-solid fa-arrow-left"></i></a>
 
-        <a href="{{ route('admin.apartments.index') }}" class="btn btn-secondary mt-3"><i
-                class="fa-solid fa-arrow-left"></i></a>
-        <h3 class="text-center mb-3">Maggiori dettagli:</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Stanze</th>
-                    <th scope="col">Letti</th>
-                    <th scope="col">Bagni</th>
-                    <th scope="col">Metri Quadri</th>
-                    <th scope="col">Indirizzo</th>
-                    <th scope="col">Pubblicato da:</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ $apartment->title }}</td>
-                    <td>{{ $apartment->rooms }}</td>
-                    <td>{{ $apartment->beds }}</td>
-                    <td>{{ $apartment->bathrooms }}</td>
-                    <td>{{ $apartment->square_meters }}</td>
-                    <td>{{ $apartment->address }}</td>
-                    <td>{{ $owner->name }}</td>
-
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="row">
-            <h4>Servizi:</h4>
-            @foreach ($apartment->services as $service)
-                <p>- {{ $service->name }}</p>
-            @endforeach
+        <div class="title-show">
+            <h3 class="t-show">{{ $apartment->title }}</h3>
+            <p class="st-show">
+                <i class="fa-solid fa-location-dot"></i>
+                {{ $apartment->address }}
+            </p>
         </div>
+        <div class="wrap">
+            <div class="img-show">
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+            </div>
+            <div class="card-info">
+                <div class="info">
+                    <h4 class="t-info">Informazioni</h4>
+                    <div class="single-info">
+                        <p class="t-s">Stanze</p>
+                        <span class="n-i">{{ $apartment->rooms }}</span>
+                    </div>
+                    <div class="single-info">
+                        <p class="t-s">Bagni</p>
+                        <span class="n-i">{{ $apartment->bathrooms }}</span>
+                    </div>
+                    <div class="single-info">
+                        <p class="t-s">Letti</p>
+                        <span class="n-i">{{ $apartment->beds }}</span>
+                    </div>
+                    <div class="single-info">
+                        <p class="t-s">Mq</p>
+                        <span class="n-i">{{ $apartment->square_meters }}</span>
+                    </div>
+                </div>
+                <!-- Service -->
+                <div class="service">
+                    <h4 class="t-info">Servizi</h4>
+                    <div class="service-cat">
+                        @foreach ($apartment->services as $service)
+                            <div class="sp-i">
+                                <span class="n-i">{{ $service->name }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         {{-- Mappa --}}
-        <h3>Mappa del luogo </h3>
-        <div id="map" style="width: 70%; height: 400px;"></div>
-        {{-- Foto --}}
-        <div class="slider">
-            <h4>Immagini:</h4>
-            <img class="mb-5" style="width: 70%; height: 400px" src="{{ asset('storage/' . $apartment->image) }}"
-                alt="">
+
+        <div class="cont-map mt-3">
+            <a class="open text-center mt-3">
+                Open Map
+            </a>
+            <div class="map-s mt-3">
+                <h3 class="text-white">Mappa del luogo </h3>
+                <div id="map" style="width: 350px; height: 350px;"></div>
+            </div>
         </div>
 
         <script>
@@ -53,14 +68,11 @@
                 key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
                 container: "map",
                 center: [{{ $apartment->longitude }}, {{ $apartment->latitude }}],
-                zoom: 15
+                zoom: 10
             });
             const marker = new tt.Marker()
                 .setLngLat({{ $apartment->latitude }}, {{ $apartment->longitude }}, )
                 .addTo(map);
         </script>
-
-
-
     </div>
 @endsection

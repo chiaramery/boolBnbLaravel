@@ -6,6 +6,7 @@ import tt from "@tomtom-international/web-sdk-maps";
 
 import "./validationPasswordConfirm";
 import "./menuResponsive";
+import "./mapScroll";
 
 // const map = tt.map({
 //     key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
