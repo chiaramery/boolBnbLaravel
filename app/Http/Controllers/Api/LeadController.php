@@ -22,7 +22,7 @@ class LeadController extends Controller
             'message' => ['required']
         ]);
 
-        // se i dati non sono validi restitusco gli errori con success false 
+        // se i dati non sono validi restitusco gli errori con success false
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,

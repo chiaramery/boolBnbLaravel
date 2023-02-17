@@ -88,7 +88,7 @@ class ApartmentController extends Controller
 
         $new_apartment = Apartment::create($data);
         // $apartment = Apartment::create($data);
-        //Se services esiste 
+        //Se services esiste
 
         if ($request->has('services')) {
             //Inseriamo i nuovi servizi nell'appartamento
