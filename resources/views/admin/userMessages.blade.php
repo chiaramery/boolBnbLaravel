@@ -4,9 +4,8 @@
     <div class="container">
 
         <h1>Messaggi ricevuti</h1>
-
         <h3>Mittente:</h3>
-        <p>nome</p>
+        <p>{{ $userMessages->name }}</p>
 
         <h3>Mail:</h3>
         <p>mail</p>

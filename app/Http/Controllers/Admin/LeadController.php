@@ -1,28 +1,40 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Apartment;
+use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LeadController extends Controller
 {
-    public function index(Request $request)
+    //     public function index()
+    //     {
+    //         $userMessages = Lead::all();
+
+    //         if (count($userMessages->all()) === 0) {
+    //             $userMessages = Lead::where('apartment_id',
+    //                 'user_id', Auth::user()->id)->get();
+    //         };
+    //         return view('admin.userMessages', compact('userMessages'));
+    //     }
+    // }
+
+    public function show($id)
     {
-        $apartments = Apartment::where('user_id', Auth::user()->id)->get();
+        // ottieni l'utente loggato
+        $user = Auth::user();
 
-        // Esempio di filtro per titolo
-        // if (count($request->all()) === 0) {
-        // Nessuna ricerca effettuata
-        //     $apartments = Apartment::where('user_id', Auth::user()->id)->get();
-        // } elseif ($request->has('search_key_title')) {
-        //     $apartments = Apartment::where([
-        //         ['user_id', Auth::user()->id],
-        //         ['title', 'like', "%$request->search_key_title%"],
-        //     ])->get();
-        // }
+        // ottieni i messaggi per l'appartamento loggato
+        $userMessages = Lead::where('apartment_id', $id)
+            ->whereHas('apartment', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->get();
 
-        return view('admin.apartments.userMessages', compact('apartments', 'leads'));
+        // restituisci la vista con i messaggi
+        return view('admin.userMessages', compact('userMessages'));
     }
 }
