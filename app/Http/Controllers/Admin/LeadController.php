@@ -22,19 +22,19 @@ class LeadController extends Controller
     //     }
     // }
 
-    public function show($id)
-    {
-        // ottieni l'utente loggato
-        $user = Auth::user();
+    // public function show($id)
+    // {
+    // ottieni l'utente loggato
+    // $user = Auth::user();
 
-        // ottieni i messaggi per l'appartamento loggato
-        $userMessages = Lead::where('apartment_id', $id)
-            ->whereHas('apartment', function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            })
-            ->get();
+    // ottieni i messaggi per l'appartamento loggato
+    // $userMessages = Lead::where('apartment_id', $id)
+    //     ->whereHas('apartment', function ($query) use ($user) {
+    //         $query->where('user_id', $user->id);
+    //     })
+    //     ->get();
 
-        // restituisci la vista con i messaggi
-        return view('admin.userMessages', compact('userMessages'));
-    }
+    // restituisci la vista con i messaggi
+    // return view('admin.userMessages', compact('userMessages'));
+    // }
 }
