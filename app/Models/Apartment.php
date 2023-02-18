@@ -22,7 +22,7 @@ class Apartment extends Model
         'latitude',
         'visibility',
         'slug',
-        'user_id'
+        'user_id',
     ];
 
     public static function generateSlug($title, $address)
@@ -38,5 +38,10 @@ class Apartment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
     }
 }

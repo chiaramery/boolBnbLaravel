@@ -82,6 +82,14 @@
                             Search
                         </a>
                     </li>
+                    <li
+                        class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.messages.index' ? 'dash-active' : '' }}">
+                        <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.messages.index' ? 'color-active' : '' }}"
+                            href="{{ route('admin.messages.index') }}">
+                            <i class="fa-solid fa-message"></i>
+                            Messaggi
+                        </a>
+                    </li>
                 </ul>
             </div>
 
