@@ -7,9 +7,9 @@
         <div class="card text-center m-3" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">{{$promotion->name}}</h5>
-              <p class="card-text">{{$promotion->price}}</p>
-              <p class="card-text">{{$promotion->time}}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">prezzo: {{$promotion->price}} €</p>
+              <p class="card-text">durata in giorni: {{$promotion->time}}</p>
+              <a href="#" class="btn btn-primary">Vai al pagamento</a>
             </div>
           </div>
         @endforeach
