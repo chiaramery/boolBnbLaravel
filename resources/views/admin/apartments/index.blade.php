@@ -30,9 +30,13 @@
                         </div>
                         <div class="actions">
                             <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
-                                class="btn btn-success">View</a>
+                                class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                             <a href="{{ route('admin.apartments.edit', $apartment->slug) }}" class="btn btn-warning"><i
                                     class="fa-solid fa-pen"></i></a>
+                                    {{-- Promozioni --}}
+                            <a href="{{ route('admin.promotions.index', $apartment->slug) }}"
+                                        class="btn btn-success"><i class="fa-solid fa-hand-holding-dollar"></i></i></a>
+
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#delete-apartment-{{ $apartment->id }}">
                                 <i class="fa-solid fa-trash"></i>
