@@ -44,4 +44,9 @@ class Apartment extends Model
     {
         return $this->hasMany(Lead::class);
     }
+
+    public function promotions()
+    {
+        return $this->belongsTo(Promotion::class)->withTimestamps()->withPivot(['is_active', 'start_date', 'end_date']);
+    }
 }
