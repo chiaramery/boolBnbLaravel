@@ -9,8 +9,9 @@ class Promotion extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['start_date', 'end_date', 'is_active'];
     public function apartments()
     {
-        return $this->belongsTo(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 }

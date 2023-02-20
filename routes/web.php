@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/search', [ApartmentController::class, 'search'])->name('search');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/promotions', [OrderController::class, 'index'])->name('promotions.index');
-    Route::post('/orders/make-payment', [ApiOrderController::class, 'makePayment'])->name('orders.makePayment');
+    Route::post('/orders/make-payment', [OrderController::class, 'store'])->name('orders.makePayment');
 });
 
 

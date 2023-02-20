@@ -12,6 +12,7 @@ use App\Models\Promotion;
 use App\Models\Service;
 use App\Models\User;
 use App\Support\getDataFromAPI;
+use Braintree\Gateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
@@ -108,10 +109,19 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment, User $user)
     {
+        $gateway = new Gateway([
+            'environment' => env('BRAINTREE_ENVIRONMENT'),
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
+        ]);
+        $token = $gateway->clientToken()->generate();
 
         $owner = User::findOrFail($apartment->user_id);
         $promotions = Promotion::all();
-        return view('admin.apartments.show', compact('apartment', 'user', 'owner', 'promotions'));
+
+
+        return view('admin.apartments.show', compact('apartment', 'user', 'owner', 'promotions', 'token'));
     }
 
     /**
