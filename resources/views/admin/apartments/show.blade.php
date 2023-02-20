@@ -52,7 +52,6 @@
         </div>
 
         {{-- Mappa --}}
-
         <div class="cont-map mt-3">
             <a class="open text-center mt-3">
                 Open Map
@@ -62,7 +61,6 @@
                 <div id="map" style="width: 350px; height: 350px;"></div>
             </div>
         </div>
-
         <script>
             const map = tt.map({
                 key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
@@ -73,6 +71,77 @@
             const marker = new tt.Marker()
                 .setLngLat({{ $apartment->latitude }}, {{ $apartment->longitude }}, )
                 .addTo(map);
+        </script>
+    </div>
+
+    {{-- Promozioni --}}
+    <h2 class="text-center mt-4">Le nostre promozioni</h2>
+    <div class="container">
+        <form method="POST" id="payment-form" action="{{ route('admin.orders.makePayment') }}">
+            @csrf
+            <div class="container d-flex justify-content-center">
+                @foreach ($promotions as $promotion)
+                    <div class="card text-center m-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $promotion->name }}</h5>
+                            <p class="card-text">prezzo: {{ $promotion->price }} €</p>
+                            <p class="card-text">durata in giorni: {{ $promotion->time }}</p>
+                            {{-- <a href="#" class="btn btn-primary">Vai al pagamento</a> --}}
+                            <div class="d-flex align-items-center">
+                                <input type="hidden" name="appartamento" value="{{ $apartment->id }}" />
+                                <input class="form-check-input mt-0" type="radio" name="price"
+                                    value="{{ $promotion->id }}" aria-label="Checkbox for following text input">
+                                <span>seleziona sponsorizzazione</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <section>
+                <label for="amount">
+                    <span class="input-label">Price:</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <div id="amount" name="amount">
+                            {{ $promotion->price }} €
+                        </div>
+                    </div>
+                </label>
+                <div class="bt-drop-in-wrapper">
+                    <div id="bt-dropin"></div>
+                </div>
+            </section>
+            <input id="nonce" name="payment_method_nonce" type="hidden" />
+            <button class="button" type="submit"><span>Test Transaction</span></button>
+        </form>
+        <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.min.js"></script>
+        <script>
+            var form = document.querySelector('#payment-form');
+            var client_token = '{{ $token }}'
+            braintree.dropin.create({
+                    authorization: client_token,
+                    selector: '#bt-dropin',
+
+                },
+                function(createErr, instance) {
+                    if (createErr) {
+                        console.log('Create Error', createErr);
+                        return;
+                    }
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+
+                        instance.requestPaymentMethod(function(err, payload) {
+                            if (err) {
+                                console.log('Request Payment Method Error', err);
+                                return;
+                            }
+
+                            // Add the nonce to the form and submit
+                            document.querySelector('#nonce').value = payload.nonce;
+                            form.submit();
+                        });
+                    });
+                });
         </script>
     </div>
 @endsection

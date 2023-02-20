@@ -32,7 +32,7 @@ class OrderController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-
+        dd($result);
         if ($result->success) {
             $data = [
                 'success' => true,
