@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use App\Models\Promotion;
 use App\Models\Service;
 use App\Models\User;
 use App\Support\getDataFromAPI;
@@ -109,7 +110,8 @@ class ApartmentController extends Controller
     {
 
         $owner = User::findOrFail($apartment->user_id);
-        return view('admin.apartments.show', compact('apartment', 'user', 'owner'));
+        $promotions = Promotion::all();
+        return view('admin.apartments.show', compact('apartment', 'user', 'owner', 'promotions'));
     }
 
     /**

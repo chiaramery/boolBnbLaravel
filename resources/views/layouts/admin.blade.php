@@ -17,6 +17,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tomtom-international/web-sdk-maps@6.14.0/services-and-helpers.min.js">
     </script>
 
+<script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
+
 
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"

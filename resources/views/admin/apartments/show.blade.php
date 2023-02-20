@@ -75,4 +75,35 @@
                 .addTo(map);
         </script>
     </div>
+
+
+
+<form method="POST" action="{{route('admin.orders.makePayment')}}">
+    @csrf
+    <h2 class="text-center mt-4">Le nostre promozioni</h2>
+    <div class="container d-flex justify-content-center">
+        @foreach ($promotions as $promotion)
+        <div class="card text-center m-3" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{$promotion->name}}</h5>
+              <p class="card-text">prezzo: {{$promotion->price}} €</p>
+              <p class="card-text">durata in giorni: {{$promotion->time}}</p>
+              {{-- <a href="#" class="btn btn-primary">Vai al pagamento</a> --}}
+              <p class="d-flex align-items-center">
+                <input type="hidden" name="{{$apartment->id}}" />
+                <input class="form-check-input mt-0" type="checkbox" value="{{$promotion->id}}" aria-label="Checkbox for following text input">
+               <span>seleziona sponsorizzazione</span>
+              </p>
+            </div>
+          </div>
+        @endforeach
+
+    </div>
+
+<div class="container">
+  <div id="dropin-container"></div>
+  <button  id="submit-button" class="button button--small button--green">Paga</button>
+</div>
+
+</form>
 @endsection

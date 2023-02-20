@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Api\OrderController as ApiOrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/search', [ApartmentController::class, 'search'])->name('search');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/promotions', [OrderController::class, 'index'])->name('promotions.index');
+    Route::post('/orders/make-payment', [ApiOrderController::class, 'makePayment'])->name('orders.makePayment');
 });
 
 
