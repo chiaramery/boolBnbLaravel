@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Promotions\PromotionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
+/*  
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------

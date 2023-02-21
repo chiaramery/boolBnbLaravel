@@ -5,7 +5,7 @@
 @section('content')
     <div class="container col-9 mt-5">
 
-        <h3 class="text-center mt-3 mb-3">Crea un nuovo appartamento:</h3>
+        <h3 class="text-center mt-3 mb-3">Aggiungi un nuovo appartamento:</h3>
         <p style="color : red ">* (campo obbligatorio)</p>
         <form method="post" enctype="multipart/form-data" action="{{ route('admin.apartments.store') }}">
             @csrf
