@@ -15,7 +15,9 @@ class MessageController extends Controller
             $query->select('id')
                 ->from('apartments')
                 ->where('user_id', '=', $user->id);
-        })->get();
+        })
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('admin.apartments.message', compact('leads'));
     }
 }

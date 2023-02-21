@@ -8,9 +8,10 @@
             <div class="card me-3 mt-3" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $lead->name }}</h5>
-                    <p class="card-text"> Messaggio : {{ $lead->message }}</p>
-                    <p class="card-text">Email : {{ $lead->email }}</p>
-                    <p class="card-text">Scritto il : {{ $lead->created_at }}</p>
+                    <p class="card-text"> <span class="fw-bold">Messaggio : </span> {{ $lead->message }}</p>
+                    <p class="card-text"><span class="fw-bold">Email :</span> {{ $lead->email }}</p>
+                    <p class="card-text"><span class="fw-bold">Scritto il :</span>
+                        {{ $lead->created_at->setTimezone('Europe/Rome')->format('d/m/Y H:i:s') }}</p>
                 </div>
             </div>
         @endforeach
