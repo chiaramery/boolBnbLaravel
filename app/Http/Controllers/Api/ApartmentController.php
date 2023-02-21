@@ -16,7 +16,10 @@ class ApartmentController extends Controller
     public function all(Request $request)
     {
 
-        $apartments = Apartment::with('services')->get();
+        $apartments = Apartment::with('services')
+            ->leftJoin('apartment_promotion', 'apartments.id', '=', 'apartment_promotion.apartment_id')
+            ->orderBy('apartment_promotion.is_active', 'DESC')
+            ->get();
 
         return response()->json([
             'success' => true,
@@ -66,7 +69,9 @@ class ApartmentController extends Controller
     public function filter(Request $request)
     {
 
-        $query = DB::table('apartments');
+        $query = DB::table('apartments')
+            ->leftJoin('apartment_promotion', 'apartments.id', '=', 'apartment_promotion.apartment_id')
+            ->orderByDesc('apartment_promotion.is_active');
 
         // Filtri di ricerca
         if ($request->filled('bathrooms')) {

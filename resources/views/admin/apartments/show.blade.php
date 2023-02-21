@@ -7,6 +7,12 @@
 
         <div class="title-show">
             <h3 class="t-show">{{ $apartment->title }}</h3>
+            @if ($apartment->promotions()->where('is_active', 1)->exists())
+                <div>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <span class="text-warning fw-bold">Sponsor</span>
+                </div>
+            @endif
             <p class="st-show">
                 <i class="fa-solid fa-location-dot"></i>
                 {{ $apartment->address }}

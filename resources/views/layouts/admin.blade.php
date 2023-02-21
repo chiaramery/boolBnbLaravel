@@ -45,7 +45,7 @@
                 </div>
                 <a class="btn-dash rounded-1 me-3" href="{{ route('admin.apartments.create') }}">
                     <i class="fa-solid fa-plus"></i>
-                    Add New
+                    Aggiungi
                 </a>
                 <a class="btn-dash rounded-1 me-3" href="{{ route('admin.apartments.create') }}">
                     <i class="fa-solid fa-user"></i>
@@ -72,8 +72,8 @@
                         class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.apartments.index' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.apartments.index' ? 'color-active' : '' }}"
                             href="{{ route('admin.apartments.index') }}">
-                            <i class="fa-solid fa-house me-4"></i>
-                            Apartments
+                            <i class="fa-solid fa-house me-2"></i>
+                            Appartamenti
                         </a>
                     </li>
                     <li
@@ -81,7 +81,7 @@
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.search' ? 'color-active' : '' }}"
                             href="{{ route('admin.search') }}">
                             <i class="fa-solid fa-magnifying-glass me-4"></i>
-                            Search
+                            Cerca
                         </a>
                     </li>
                     <li
@@ -89,7 +89,7 @@
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.messages.index' ? 'color-active' : '' }}"
                             href="{{ route('admin.messages.index') }}">
                             <i class="fa-solid fa-message me-4"></i>
-                            Messagges
+                            Messaggi
                         </a>
                     </li>
                 </ul>

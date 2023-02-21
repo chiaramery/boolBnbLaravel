@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="mt-3 text-uppercase fs-2 text-center text-md-start">Apartments List</h3>
+        <h3 class="mt-3 text-uppercase fs-2 text-center text-md-start fw-bold">Lista dei tuoi appartamenti</h3>
         <div class="filter">
             <form class="mb-3 mt-4 col-5 mx-auto mx-md-0" action="{{ route('admin.apartments.index') }}" method="GET">
                 @csrf
@@ -26,6 +26,12 @@
                         </div>
                         <div class="text">
                             <h4 class="title-apartment">{{ $apartment->title }}</h4>
+                            @if ($apartment->promotions()->where('is_active', 1)->exists())
+                                <div class="text-center">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <span class="text-warning fw-bold">Sponsor</span>
+                                </div>
+                            @endif
                             <p class="title-address">{{ $apartment->address }}</p>
                         </div>
                         <div class="actions">
