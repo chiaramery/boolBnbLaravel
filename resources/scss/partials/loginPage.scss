@@ -1,0 +1,25 @@
+#bg-blue-gradient{
+    background-image: linear-gradient(to bottom right, rgb(5, 31, 67) , rgb(23, 65, 216));
+
+    #login-jumbo{
+        background-image:linear-gradient(to bottom right, rgb(23, 65, 216), rgb(106, 188, 247));
+        color:rgb(2, 2, 58) ;
+    }
+
+    .logo {
+           .text-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+
+            &:after {
+                content: 'bnb';
+                font-size: 1.6rem;
+                text-transform: lowercase;
+            }
+        }
+    }
+
+}
+
