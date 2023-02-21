@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tomtom-international/web-sdk-maps@6.14.0/services-and-helpers.min.js">
     </script>
 
-<script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
 
 
     {{-- Fontawesome --}}
@@ -88,8 +88,8 @@
                         class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.messages.index' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.messages.index' ? 'color-active' : '' }}"
                             href="{{ route('admin.messages.index') }}">
-                            <i class="fa-solid fa-message"></i>
-                            Messaggi
+                            <i class="fa-solid fa-message me-4"></i>
+                            Messagges
                         </a>
                     </li>
                 </ul>

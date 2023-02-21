@@ -91,21 +91,21 @@
                                 <input type="hidden" name="appartamento" value="{{ $apartment->id }}" />
                                 <input class="form-check-input mt-0" type="radio" name="price"
                                     value="{{ $promotion->id }}" aria-label="Checkbox for following text input">
-                                <span>seleziona sponsorizzazione</span>
+                                <span class="text-center">seleziona</span>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
             <section>
-                <label for="amount">
+                {{-- <label for="amount">
                     <span class="input-label">Price:</span>
                     <div class="input-wrapper amount-wrapper">
                         <div id="amount" name="amount">
                             {{ $promotion->price }} €
                         </div>
                     </div>
-                </label>
+                </label> --}}
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin"></div>
                 </div>
