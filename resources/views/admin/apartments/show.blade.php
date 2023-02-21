@@ -87,7 +87,9 @@
             @csrf
             <div class="container d-flex justify-content-center">
                 @foreach ($promotions as $promotion)
-                    <div class="card text-center m-3" style="width: 18rem;">
+                    <div class="card  m-3" style="width: 18rem;">
+                        <img src="https://st4.depositphotos.com/20524830/25942/i/600/depositphotos_259424714-stock-photo-promo-red-rubber-stamp-white.jpg"
+                            class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $promotion->name }}</h5>
                             <p class="card-text">prezzo: {{ $promotion->price }} €</p>
@@ -97,7 +99,7 @@
                                 <input type="hidden" name="appartamento" value="{{ $apartment->id }}" />
                                 <input class="form-check-input mt-0" type="radio" name="price"
                                     value="{{ $promotion->id }}" aria-label="Checkbox for following text input">
-                                <span class="text-center">seleziona</span>
+                                <span class="ms-1">seleziona</span>
                             </div>
                         </div>
                     </div>
@@ -112,12 +114,14 @@
                         </div>
                     </div>
                 </label> --}}
+                <h3 class="mt-3">Inserisci le informazioni della tua carta : </h3>
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin"></div>
                 </div>
             </section>
+
             <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="button" type="submit"><span>Test Transaction</span></button>
+            <button class="button" type="submit"><span>Conferma pagamento </span></button>
         </form>
         <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.min.js"></script>
         <script>

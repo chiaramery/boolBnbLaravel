@@ -18,15 +18,7 @@
             <label for="beds">Posti letto :</label>
             <input type="number" name="beds" id="beds" class="form-control">
         </div>
-        <h5 class="mt-3">Spunta i servizi che diseri siano compresi nel tuo appartamento </h5>
-        @foreach ($services as $service)
-            <div class="mb-3 form-check form-check-inline">
-                <label for="{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
-                <input class="form-check-input" id="{{ $service->id }}" name="services[]" type="checkbox"
-                    value="{{ $service->id }}">
-            </div>
-        @endforeach
-        <br>
+
         <button type="submit" class="mb-3 btn btn-primary mt-3">Cerca</button>
     </form>
     <div class="container mt-2">
