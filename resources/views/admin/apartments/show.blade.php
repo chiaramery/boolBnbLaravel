@@ -115,6 +115,11 @@
                     </div>
                 </label> --}}
                 <h3 class="mt-3">Inserisci le informazioni della tua carta : </h3>
+                @if (session('message'))
+                    <div class="alert alert-danger">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin"></div>
                 </div>

@@ -36,9 +36,9 @@ class OrderController extends Controller
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'customer' => [
-                'firstName' => 'Gino',
-                'lastName' => 'Stark',
-                'email' => 'tony@avengers.com',
+                'firstName' => 'Peppe',
+                'lastName' => 'Peppino',
+                'email' => 'Peppino@gmail.com',
             ],
             'options' => [
                 'submitForSettlement' => true
@@ -68,7 +68,7 @@ class OrderController extends Controller
             );
             return redirect()->route('admin.apartments.index')->with('message', 'Appartamento sponsorizzato correttamente');
         } else {
-            return 'notok';
+            return back()->with('message', 'Acquisto non andato a buon fine , si prega di riprovare! (Assicurati di aver scelto una promozione ;))');
         }
     }
 }
