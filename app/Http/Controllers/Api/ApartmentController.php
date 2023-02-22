@@ -18,6 +18,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::with('services')
             ->leftJoin('apartment_promotion', 'apartments.id', '=', 'apartment_promotion.apartment_id')
+            ->where('apartments.visibility', 1)
             ->orderBy('apartment_promotion.is_active', 'DESC')
             ->get();
 
@@ -32,8 +33,11 @@ class ApartmentController extends Controller
         $lat = $request->latitude;
         $lng = $request->longitude;
 
-        $apartment = DB::table('apartments')
-            ->select('*')
+        $apartment = Apartment::with('services')
+            ->leftJoin('apartment_promotion', 'apartments.id', '=', 'apartment_promotion.apartment_id')
+            ->where('apartments.visibility', 1)
+            ->orderByDesc('apartment_promotion.is_active')
+            ->orderByRaw('(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians(' . $lat . ')) * sin(radians(latitude))))')
             ->whereRaw('(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians(' . $lat . ')) * sin(radians(latitude)))) <= 20')
             ->get();
 
@@ -71,6 +75,7 @@ class ApartmentController extends Controller
 
         $query = DB::table('apartments')
             ->leftJoin('apartment_promotion', 'apartments.id', '=', 'apartment_promotion.apartment_id')
+            ->where('apartments.visibility', 1)
             ->orderByDesc('apartment_promotion.is_active');
 
         // Filtri di ricerca

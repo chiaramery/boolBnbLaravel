@@ -64,7 +64,7 @@
                     <li class="single-nav {{ Route::currentRouteName() === 'admin.dashboard' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'color-active' : '' }}"
                             href="{{ route('admin.dashboard') }}">
-                            <i class="fa-solid fa-house me-4"></i>
+                            <i class="fa-solid fa-house me-2"></i>
                             Dashboard
                         </a>
                     </li>
@@ -72,7 +72,7 @@
                         class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.apartments.index' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.apartments.index' ? 'color-active' : '' }}"
                             href="{{ route('admin.apartments.index') }}">
-                            <i class="fa-solid fa-house me-2"></i>
+                            <i class="fa-solid fa-person-shelter me-2"></i>
                             Appartamenti
                         </a>
                     </li>
@@ -80,7 +80,7 @@
                         class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.search' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.search' ? 'color-active' : '' }}"
                             href="{{ route('admin.search') }}">
-                            <i class="fa-solid fa-magnifying-glass me-4"></i>
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>
                             Cerca
                         </a>
                     </li>
@@ -88,7 +88,7 @@
                         class="single-nav mt-4 {{ Route::currentRouteName() === 'admin.messages.index' ? 'dash-active' : '' }}">
                         <a class="nav-link title-link {{ Route::currentRouteName() === 'admin.messages.index' ? 'color-active' : '' }}"
                             href="{{ route('admin.messages.index') }}">
-                            <i class="fa-solid fa-message me-4"></i>
+                            <i class="fa-solid fa-message me-2"></i>
                             Messaggi
                         </a>
                     </li>

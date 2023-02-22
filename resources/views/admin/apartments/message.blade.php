@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-center">Messaggi ricevuti</h1>
-
-    <div class="container d-flex">
+    <h1 class="text-center  mt-4">Messaggi ricevuti</h1>
+    <div class="container d-flex justify-content-center justify-content-md-start flex-wrap">
         @foreach ($leads as $lead)
             <div class="card me-3 mt-3" style="width: 18rem;">
                 <div class="card-body">

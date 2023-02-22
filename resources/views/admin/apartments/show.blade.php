@@ -85,7 +85,7 @@
     <div class="container">
         <form method="POST" id="payment-form" action="{{ route('admin.orders.makePayment') }}">
             @csrf
-            <div class="container d-flex justify-content-center">
+            <div class="container d-flex justify-content-center flex-wrap">
                 @foreach ($promotions as $promotion)
                     <div class="card  m-3" style="width: 18rem;">
                         <img src="https://st4.depositphotos.com/20524830/25942/i/600/depositphotos_259424714-stock-photo-promo-red-rubber-stamp-white.jpg"
